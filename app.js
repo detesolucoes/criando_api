@@ -7,10 +7,10 @@ app.get("/", (req, res) => {
 
 app.post("/post", (req, res) => {
     return res.json(req.body);
-})
+});
 
 app.listen(3333, () => {
-    console.log("Servidor iniciado na porta 3333");
+    console.log("Servidor iniciado na porta.");
 });
 
 
