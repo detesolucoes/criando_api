@@ -6,6 +6,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(3333, () => {
-    console.log("Servidor iniciado na porta  8080: http://localhost:8080/");
+    console.log("Servidor iniciado na porta 3333");
 });
 
