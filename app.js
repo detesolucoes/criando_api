@@ -1,5 +1,11 @@
 const express = require('express');
 const app = express();
+
+const puppeteer = require('puppeteer'); // npm i puppeteer
+const delay = require('delay'); // npm install delay
+const path = require('path');
+const mkdirp = require('mkdirp'); // npm install mkdirp
+var fs = require('fs');
 //onst bodyParser = require("body-parser");
 
 //app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,6 +25,12 @@ app.post("/post", (req, res) => {
 
 app.post("/post2", (req, res) => {
     return res.json(req.body);
+});
+
+app.post("/pref", (req, res) => {
+    //return 'ok';
+    console.log(req.body.teste);
+    return res.json({teste:"ok"});
 });
 
 app.listen(3333, () => {
