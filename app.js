@@ -49,7 +49,7 @@ app.post("/pref", (req, res) => {
         await delay(3000);
       
         const downloadUrl = req.body.url3;
-        const downloadUrl2 = req.body.url;
+        const downloadUrl2 = req.body.url4;
       
         await page.goto(downloadUrl2);
       
