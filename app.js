@@ -24,7 +24,7 @@ app.post("/post", (req, res) => {
 });
 
 app.post("/post2", (req, res) => {
-    return res.json(req.body);
+    return res.json(req.body.key);
 });
 
 app.post("/pref", (req, res) => {
