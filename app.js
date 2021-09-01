@@ -16,7 +16,7 @@ app.post("/post", (req, res) => {
 });
 
 app.post("/post2", (req, res) => {
-    return res.json({titulo: "teste"});
+    return res.json(res.body);
 });
 
 app.listen(3333, () => {
