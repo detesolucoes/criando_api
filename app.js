@@ -4,6 +4,8 @@ const app = express();
 
 //app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
     res.send("Indrodução a API");
 });
