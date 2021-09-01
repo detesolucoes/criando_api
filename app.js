@@ -5,7 +5,7 @@ app.get("/", (req, res) => {
     res.send("Indrodução a API");
 });
 
-app.listen(8080, () => {
+app.listen(3333, () => {
     console.log("Servidor iniciado na porta  8080: http://localhost:8080/");
 });
 
