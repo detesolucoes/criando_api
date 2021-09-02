@@ -37,10 +37,6 @@ app.post("/post2", (req, res) => {
 });
 
 app.post("/pref", (req, res) => {
-    //return 'ok';
-    //console.log(req.body.teste);
-
-
     (async () => {
         const browser = await puppeteer.launch({
             // executablePath: '/usr/bin/chromium-browser',
@@ -98,8 +94,7 @@ app.post("/pref", (req, res) => {
               throw new Error(error)
           }
       }
-      // await downloadFileFromURL('https://www.acif.org.br/wp-content/uploads/2021/07/Edital-do-PAP-2021.pdf', `myFile.pdf`);
-
+     
     //   const directoryFiles = 'reports';
       
       await downloadFile(page, req.body.directoryFiles);
