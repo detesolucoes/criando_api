@@ -40,17 +40,21 @@ app.post("/post2", (req, res) => {
 app.post("/pref", (req, res) => {
     (async () => {
 
-      if(os.hostname().indexOf("local") > -1){
-          const browser = await puppeteer.launch({
-            headless: true,
-          });
-        }else{
-          const browser = await puppeteer.launch({
-            executablePath: '/usr/bin/chromium-browser',
-          headless: true,
-        });
-      }
+      // if(os.hostname().indexOf("local") > -1){
+      //     const browser = await puppeteer.launch({
+      //       headless: true,
+      //     });
+      //   }else{
+      //     const browser = await puppeteer.launch({
+      //       executablePath: '/usr/bin/chromium-browser',
+      //     headless: true,
+      //   });
+      // }
       
+      const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+      headless: true,
+    });
         const page = await browser.newPage();
       
       
