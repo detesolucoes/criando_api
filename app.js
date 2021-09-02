@@ -39,12 +39,12 @@ app.post("/pref", (req, res) => {
         const page = await browser.newPage();
       
       
-        console.log('iniciando...');
+        // console.log('iniciando...');
         
         const url1 = req.body.url1;
         const url2 = req.body.url2;
         await page.goto(url2);
-        console.log('passando pela url 1...');
+        // console.log('passando pela url 1...');
       
         await delay(3000);
       
@@ -60,7 +60,7 @@ app.post("/pref", (req, res) => {
       async function downloadFile(page, downloadLocation){
           const downloadPath = path.resolve(downloadLocation)
           mkdirp(downloadPath)
-          console.log('Downloading file to:', downloadPath)
+        //   console.log('Downloading file to:', downloadPath)
           await page._client.send('Page.setDownloadBehavior', {
               behavior: 'allow',
               downloadPath: downloadPath,
@@ -90,13 +90,13 @@ app.post("/pref", (req, res) => {
       
       await downloadFile(page, req.body.directoryFiles);
       
-        console.log('passando pela url 2...');
-        console.log('pagina carregada...');  
+        // console.log('passando pela url 2...');
+        // console.log('pagina carregada...');  
         await page.type('[name="User"]', req.body.user1);
         await page.type('[name="Password"]', req.body.pass2);
         await page.click('[value="View Report"]');
       
-        console.log('finalizando...');
+        // console.log('finalizando...');
       
         await delay(5000);
       
