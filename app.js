@@ -20,7 +20,7 @@ var os = require('os');
 //     serveIndex('teste/reports', {icons: true})
 //     );
 
-    app.use('/reports', express.static(__dirname + '/reports'));
+    app.use('/report', express.static(__dirname + '/reports'));
 
 // app.get("/", (req, res) => {
 //     res.send("Indrodução a API");
