@@ -8,6 +8,7 @@ const path = require('path');
 const mkdirp = require('mkdirp'); // npm install mkdirp
 const serveIndex = require('serve-index');
 var fs = require('fs');
+var os = require('os');
 //onst bodyParser = require("body-parser");
 
 //app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,10 +39,17 @@ app.post("/post2", (req, res) => {
 
 app.post("/pref", (req, res) => {
     (async () => {
-        const browser = await puppeteer.launch({
-            // executablePath: '/usr/bin/chromium-browser',
+
+      if(os.hostname().indexOf("local") > -1){
+          const browser = await puppeteer.launch({,
+            headless: true,
+          });
+        }else{
+          const browser = await puppeteer.launch({
+            executablePath: '/usr/bin/chromium-browser',
           headless: true,
         });
+      }
       
         const page = await browser.newPage();
       
