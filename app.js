@@ -34,7 +34,7 @@ app.post("/pref", (req, res) => {
 
     (async () => {
         const browser = await puppeteer.launch({
-            args: ["--no-sandbox", "--disabled-setupid-sandbox"],
+            executablePath: '/usr/bin/chromium-browser',
           headless: true,
         });
       
