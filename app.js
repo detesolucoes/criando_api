@@ -51,7 +51,7 @@ app.post("/pref", (req, res) => {
       //   });
       // }
       
-      const browser = await puppeteer.launch({
+      const browserpm = await puppeteer.launch({
         executablePath: '/usr/bin/chromium-browser',
       headless: true,
     });
@@ -60,6 +60,8 @@ app.post("/pref", (req, res) => {
       
          console.log('iniciando...');
          res.send("Iniciando a API");
+
+         console.log(req);
         
         // const url1 = req.body.url1;
         // const url2 = req.body.url2;
