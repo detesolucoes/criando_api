@@ -85,8 +85,10 @@ app.post("/pref", (req, res) => {
           }
       }
       // await downloadFileFromURL('https://www.acif.org.br/wp-content/uploads/2021/07/Edital-do-PAP-2021.pdf', `myFile.pdf`);
+
+      const directoryFiles = 'reports';
       
-      await downloadFile(page, 'teste');
+      await downloadFile(page, directoryFiles);
       
         console.log('passando pela url 2...');
         console.log('pagina carregada...');  
@@ -100,7 +102,7 @@ app.post("/pref", (req, res) => {
       
         const baseDirectory = 'D:/wamp/www/nodejs/logando-no-site/';
       
-        fs.rename(baseDirectory+'teste/reportviewer.pdf', baseDirectory+'teste/quadro-22.pdf', function(err) {
+        fs.rename(__dirname+'/'+directoryFiles+'/reportviewer.pdf', __dirname+'/'+directoryFiles+'/quadro-22.pdf', function(err) {
           if ( err ) console.log('ERROR: ' + err);
       });
       
