@@ -86,9 +86,9 @@ app.post("/pref", (req, res) => {
       }
       // await downloadFileFromURL('https://www.acif.org.br/wp-content/uploads/2021/07/Edital-do-PAP-2021.pdf', `myFile.pdf`);
 
-      const directoryFiles = 'reports';
+    //   const directoryFiles = 'reports';
       
-      await downloadFile(page, directoryFiles);
+      await downloadFile(page, req.body.directoryFiles);
       
         console.log('passando pela url 2...');
         console.log('pagina carregada...');  
@@ -100,27 +100,34 @@ app.post("/pref", (req, res) => {
       
         await delay(5000);
       
-        const baseDirectory = 'D:/wamp/www/nodejs/logando-no-site/';
-        const file = req.body.file;
+        // const baseDirectory = 'D:/wamp/www/nodejs/logando-no-site/';
+        // const file = req.body.file;
       
-        fs.rename(__dirname+'/'+directoryFiles+'/reportviewer.pdf', __dirname+'/'+directoryFiles+'/'+file, function(err) {
+        fs.rename(__dirname+'/'+req.body.directoryFiles+'/reportviewer.pdf', __dirname+'/'+req.body.directoryFiles+'/'+req.body.file, function(err) {
           if ( err ) console.log('ERROR: ' + err);
       });
-      
-        await browser.close();
-      })();
 
-      const path = __dirname+'/'+directoryFiles+'/'+file
+      const pathFile = __dirname+'/'+req.body.directoryFiles+'/'+req.body.file;
+
+      await browser.close();
 
     try {
-        if (fs.existsSync(path)) {
+        if (fs.existsSync(pathFile)) {
             // return res.json({teste:"ok"});
+            console.log("Relatório gerado com sucesso");
             return res.json({status: "success", message: "Relatório gerado com sucesso", file: path, error: null});
         }
     } catch(err) {
-        console.error(err)
+        console.log(pathFile);
+        console.error("Error: "+err)
+        
         return res.json({status: "error", message: "Erro ao gerar relatório", file: null, error: err});
     }
+      
+        
+      })();
+
+      
     
     
 });
