@@ -1,19 +1,30 @@
 const express = require('express');
 const app = express();
 
+const http = require("http");
 const puppeteer = require('puppeteer'); // npm i puppeteer
 const delay = require('delay'); // npm install delay
 const path = require('path');
 const mkdirp = require('mkdirp'); // npm install mkdirp
+const serveIndex = require('serve-index');
 var fs = require('fs');
 //onst bodyParser = require("body-parser");
 
 //app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.json());
+app.use(
+    '/reports',
+    express.json(),
+    express.static('reports'),
+    serveIndex('/reports', {icons: true})
+    );
 
 app.get("/", (req, res) => {
     res.send("Indrodução a API");
+});
+
+app.get("/pdf", (req, res) => {
+    
 });
 
 // app.use(bodyParser.json());
@@ -34,7 +45,7 @@ app.post("/pref", (req, res) => {
 
     (async () => {
         const browser = await puppeteer.launch({
-            executablePath: '/usr/bin/chromium-browser',
+            // executablePath: '/usr/bin/chromium-browser',
           headless: true,
         });
       
@@ -112,7 +123,10 @@ app.post("/pref", (req, res) => {
         // const file = req.body.file;
       
         fs.rename(__dirname+'/'+req.body.directoryFiles+'/reportviewer.pdf', __dirname+'/'+req.body.directoryFiles+'/'+req.body.file, function(err) {
-          if ( err ) console.log('ERROR: ' + err);
+          if ( err ){ 
+              console.log('ERROR: ' + err);
+              return;
+            }
       });
 
       console.log('fechando browser...');
@@ -125,6 +139,12 @@ app.post("/pref", (req, res) => {
         if (fs.existsSync(pathFile)) {
             // return res.json({teste:"ok"});
             console.log("Relatório gerado com sucesso");
+
+            const ftp = require('./FTPClient');
+            const client = new ftp('ftp.detesolucoes.com.br', 21, 'rootftp@detesolucoes.com.br', '%M+DQc83=W6#', false);
+
+            client.upload(pathFile, 'public_html/'+req.body.file, 755);
+
             return res.json({status: "success", message: "Relatório gerado com sucesso", file: pathFile, error: null});
         }
     } catch(err) {
