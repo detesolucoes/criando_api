@@ -31,6 +31,7 @@ app.post("/pref", (req, res) => {
     //return 'ok';
     //console.log(req.body.teste);
 
+
     (async () => {
         const browser = await puppeteer.launch({
           headless: true,
@@ -39,14 +40,16 @@ app.post("/pref", (req, res) => {
         const page = await browser.newPage();
       
       
-        // console.log('iniciando...');
+         console.log('iniciando...');
+         res.send("Iniciando a API");
         
         // const url1 = req.body.url1;
         // const url2 = req.body.url2;
         await page.goto(req.body.url2);
-        // console.log('passando pela url 1...');
+        console.log('passando pela url 1...');
       
         await delay(3000);
+        console.log('delay de 3 segundos...');
       
         // const downloadUrl = req.body.url3;
         // const downloadUrl2 = req.body.url4;
@@ -58,6 +61,7 @@ app.post("/pref", (req, res) => {
       * @param {downloadLocation , directory where you want to save a file } downloadLocation
       */
       async function downloadFile(page, downloadLocation){
+        console.log('criando diretório '+downloadLocation+'...');
           const downloadPath = path.resolve(downloadLocation)
           mkdirp(downloadPath)
         //   console.log('Downloading file to:', downloadPath)
@@ -92,6 +96,8 @@ app.post("/pref", (req, res) => {
       
         // console.log('passando pela url 2...');
         // console.log('pagina carregada...');  
+
+        console.log('informando credenciais...');
         await page.type('[name="User"]', req.body.user1);
         await page.type('[name="Password"]', req.body.pass2);
         await page.click('[value="View Report"]');
@@ -99,6 +105,7 @@ app.post("/pref", (req, res) => {
         // console.log('finalizando...');
       
         await delay(5000);
+        console.log('delay de 5 segundos...');
       
         // const baseDirectory = 'D:/wamp/www/nodejs/logando-no-site/';
         // const file = req.body.file;
@@ -107,17 +114,20 @@ app.post("/pref", (req, res) => {
           if ( err ) console.log('ERROR: ' + err);
       });
 
+      console.log('fechando browser...');
       await browser.close();
 
       const pathFile = __dirname+'/'+req.body.directoryFiles+'/'+req.body.file;
 
     try {
+        console.log('entrando no try...');
         if (fs.existsSync(pathFile)) {
             // return res.json({teste:"ok"});
             console.log("Relatório gerado com sucesso");
             return res.json({status: "success", message: "Relatório gerado com sucesso", file: pathFile, error: null});
         }
     } catch(err) {
+        console.log('entrando no catch...');
         console.log(pathFile);
         console.error("Ops! "+err)
         
