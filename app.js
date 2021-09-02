@@ -17,7 +17,7 @@ app.use(
     '/reports',
     // express.json(),
     express.static('teste/reports'),
-    serveIndex('/teste/reports', {icons: true})
+    serveIndex('teste/reports', {icons: true})
     );
 
 // app.get("/", (req, res) => {
