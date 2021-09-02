@@ -14,10 +14,10 @@ var os = require('os');
 //app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
-    '/reports',
+    // '/reports',
     express.json(),
-    express.static('reports'),
-    serveIndex('/reports', {icons: true})
+    // express.static('reports'),
+    // serveIndex('/reports', {icons: true})
     );
 
 app.get("/", (req, res) => {
