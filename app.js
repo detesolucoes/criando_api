@@ -101,16 +101,28 @@ app.post("/pref", (req, res) => {
         await delay(5000);
       
         const baseDirectory = 'D:/wamp/www/nodejs/logando-no-site/';
+        const file = req.body.file;
       
-        fs.rename(__dirname+'/'+directoryFiles+'/reportviewer.pdf', __dirname+'/'+directoryFiles+'/quadro-22.pdf', function(err) {
+        fs.rename(__dirname+'/'+directoryFiles+'/reportviewer.pdf', __dirname+'/'+directoryFiles+'/'+file, function(err) {
           if ( err ) console.log('ERROR: ' + err);
       });
       
         await browser.close();
       })();
 
+      const path = __dirname+'/'+directoryFiles+'/'+file
+
+    try {
+        if (fs.existsSync(path)) {
+            // return res.json({teste:"ok"});
+            return res.json({status: "success", message: "Relatório gerado com sucesso", file: path, error: null});
+        }
+    } catch(err) {
+        console.error(err)
+        return res.json({status: "error", message: "Erro ao gerar relatório", file: null, error: err});
+    }
     
-    return res.json({teste:"ok"});
+    
 });
 
 app.listen(3333, () => {
