@@ -19,7 +19,7 @@ var os = require('os');
 //     express.static('teste/reports'),
 //     serveIndex('teste/reports', {icons: true})
 //     );
-
+  console.log(__dirname + '/reports');
     app.use('/report', express.static(__dirname + '/reports'));
 
 // app.get("/", (req, res) => {
