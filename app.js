@@ -51,7 +51,7 @@ app.post("/pref", (req, res) => {
       //   });
       // }
       
-      const browserpm = await puppeteer.launch({
+      const browser = await puppeteer.launch({
         executablePath: '/usr/bin/chromium-browser',
       headless: true,
     });
