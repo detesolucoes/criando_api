@@ -41,7 +41,7 @@ app.post("/pref", (req, res) => {
     (async () => {
 
       if(os.hostname().indexOf("local") > -1){
-          const browser = await puppeteer.launch({,
+          const browser = await puppeteer.launch({
             headless: true,
           });
         }else{
