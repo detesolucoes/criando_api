@@ -41,17 +41,17 @@ app.post("/pref", (req, res) => {
       
         // console.log('iniciando...');
         
-        const url1 = req.body.url1;
-        const url2 = req.body.url2;
-        await page.goto(url2);
+        // const url1 = req.body.url1;
+        // const url2 = req.body.url2;
+        await page.goto(req.body.url2);
         // console.log('passando pela url 1...');
       
         await delay(3000);
       
-        const downloadUrl = req.body.url3;
-        const downloadUrl2 = req.body.url4;
+        // const downloadUrl = req.body.url3;
+        // const downloadUrl2 = req.body.url4;
       
-        await page.goto(downloadUrl2);
+        await page.goto(req.body.url4);
       
         /**
       * @param {page from where you want to download file } page
@@ -107,19 +107,19 @@ app.post("/pref", (req, res) => {
           if ( err ) console.log('ERROR: ' + err);
       });
 
-      const pathFile = __dirname+'/'+req.body.directoryFiles+'/'+req.body.file;
-
       await browser.close();
+
+      const pathFile = __dirname+'/'+req.body.directoryFiles+'/'+req.body.file;
 
     try {
         if (fs.existsSync(pathFile)) {
             // return res.json({teste:"ok"});
             console.log("Relatório gerado com sucesso");
-            return res.json({status: "success", message: "Relatório gerado com sucesso", file: path, error: null});
+            return res.json({status: "success", message: "Relatório gerado com sucesso", file: pathFile, error: null});
         }
     } catch(err) {
         console.log(pathFile);
-        console.error("Error: "+err)
+        console.error("Ops! "+err)
         
         return res.json({status: "error", message: "Erro ao gerar relatório", file: null, error: err});
     }
