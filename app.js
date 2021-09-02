@@ -13,12 +13,14 @@ var os = require('os');
 
 //app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(
-    '/reports',
-    // express.json(),
-    express.static('teste/reports'),
-    serveIndex('teste/reports', {icons: true})
-    );
+// app.use(
+//     '/reports',
+//     // express.json(),
+//     express.static('teste/reports'),
+//     serveIndex('teste/reports', {icons: true})
+//     );
+
+    app.use('/reports', express.static(__dirname + '/reports'));
 
 // app.get("/", (req, res) => {
 //     res.send("Indrodução a API");
