@@ -27,8 +27,6 @@ app.get("/pdf", (req, res) => {
     
 });
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 app.post("/post", (req, res) => {
     //return 'ok';
     return res.json({teste:"ok"});
