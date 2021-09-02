@@ -16,8 +16,8 @@ var os = require('os');
 app.use(
     '/reports',
     // express.json(),
-    express.static('reports'),
-    serveIndex('/reports', {icons: true})
+    express.static('teste/reports'),
+    serveIndex('/teste/reports', {icons: true})
     );
 
 // app.get("/", (req, res) => {
